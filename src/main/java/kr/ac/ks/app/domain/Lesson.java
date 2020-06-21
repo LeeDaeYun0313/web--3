@@ -1,5 +1,6 @@
 package kr.ac.ks.app.domain;
 
+import kr.ac.ks.app.controller.LessonForm;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,6 @@ public class Lesson {
     @Id
     @GeneratedValue
     private Long id;
-
     private String name;
     private int quota;
 
@@ -30,4 +30,11 @@ public class Lesson {
         this.name = name;
         this.quota = quota;
     }
+
+    public void modify(LessonForm lessonForm) {
+        setName(lessonForm.getName());
+        setQuota(lessonForm.getQuota());
+    }
+
+
 }

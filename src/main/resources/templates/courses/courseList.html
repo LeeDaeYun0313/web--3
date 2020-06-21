@@ -23,10 +23,10 @@
             <td th:text="${course.lesson.name}"></td>
             <td th:text="${course.lesson.quota}"></td>
             <td>
-                <a href="#" class="btn btn-primary" role="button">수정</a>
+                <button th:onclick="'location.href = \'/courses/modify/' + ${course.id} + '\''" type="submit" class="btn btn-primary">수정</button>
             </td>
             <td>
-                <a href="#" class="btn btn-primary" role="button">삭제</a>
+                <button th:onclick="'location.href = \'/courses/delete/' + ${course.id} + '\''" type="submit" class="btn btn-primary">삭제</button>
             </td>
         </tr>
         </tbody>

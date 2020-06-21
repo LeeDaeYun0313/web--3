@@ -1,6 +1,9 @@
 package kr.ac.ks.app.domain;
 
+import kr.ac.ks.app.controller.StudentForm;
 import lombok.*;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +29,16 @@ public class Student {
     public Student() {
     }
 
+
+
     @Builder
     public Student(String name, String email) {
         this.name = name;
         this.email = email;
+    }
+
+    public void modify(StudentForm studentForm) {
+        setName(studentForm.getName());
+        setEmail(studentForm.getEmail());
     }
 }

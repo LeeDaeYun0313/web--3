@@ -25,18 +25,34 @@ public class Course {
 
     public void setStudent(Student student) {
         this.student = student;
-        this.student.getCourses().add(this);
     }
 
-    public void setLesson(Lesson lesson) {
+
+    public void modify(Student student, Lesson... lessons) {
+        this.lesson.setQuota(this.lesson.getQuota() + 1);
+
+        this.student = student;
+        Arrays.stream(lessons).forEach(this::setLesson);
+    }
+
+    private void setLesson(Lesson lesson) {
         this.lesson = lesson;
-        this.lesson.getCourses().add(this);
+        this.lesson.setQuota(this.lesson.getQuota()-1);
     }
 
+    public void deleteCourse(){
+        this.student.getCourses().remove(this);
+        this.lesson.getCourses().remove(this);
+        this.lesson.setQuota(this.lesson.getQuota()+1);
+
+    }
     public static Course createCourse(Student student, Lesson... lessons) {
         Course course = new Course();
         course.setStudent(student);
         Arrays.stream(lessons).forEach(course::setLesson);
         return course;
     }
+
+
+
 }
